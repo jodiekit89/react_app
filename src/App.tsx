@@ -17,6 +17,8 @@ function App() {
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [showDetails, setShowDetails] = useState<boolean>(false);
+  const [suitableForYoungChildren, setSuitableForYoungChildren] = useState(false);
+  const [suitableForOlderChildren, setSuitableForOlderChildren] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +30,8 @@ function App() {
       dest.destination.toLowerCase().includes(destination.toLowerCase()) &&
       dest.startDate >= startDate &&
       dest.endDate <= endDate &&
-      (dest.suitableForYoungFamilies || dest.suitableForOlderChildren)
+      (suitableForYoungChildren ? dest.suitableForYoungFamilies : true) &&
+      (suitableForOlderChildren ? dest.suitableForOlderChildren : true)
   );
 
   return (
@@ -65,6 +68,26 @@ function App() {
             required
           />
         </div>
+        <div className="form-group">
+          <label>
+            Suitable for Young Children:
+            <input
+              type="checkbox"
+              checked={suitableForYoungChildren}
+              onChange={() => setSuitableForYoungChildren(!suitableForYoungChildren)}
+            />
+          </label>
+        </div>
+        <div className="form-group">
+          <label>
+            Suitable for Older Children:
+            <input
+              type="checkbox"
+              checked={suitableForOlderChildren}
+              onChange={() => setSuitableForOlderChildren(!suitableForOlderChildren)}
+            />
+          </label>
+          </div>
         <button type="submit">Plan Travel Break</button>
       </form>
       {showDetails && (
