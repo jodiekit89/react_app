@@ -27,7 +27,15 @@
         "id": 4,
         "destination": "Spain",
         "startDate": "2023-08-10",
-        "endDate": "2025-09-20",
+        "endDate": "2023-08-20",
+        "suitableForYoungFamilies": true,
+        "suitableForOlderChildren": true
+      },
+      {
+        "id": 5,
+        "destination": "Cornwall",
+        "startDate": "2023-08-10",
+        "endDate": "2023-08-20",
         "suitableForYoungFamilies": true,
         "suitableForOlderChildren": true
       }
