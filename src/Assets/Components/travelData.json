@@ -1,0 +1,36 @@
+[
+    {
+      "id": 1,
+      "destination": "Beach Paradise",
+      "startDate": "2023-08-15",
+      "endDate": "2023-08-25",
+      "suitableForYoungFamilies": true,
+      "suitableForOlderChildren": true
+    },
+    {
+      "id": 2,
+      "destination": "Mountain Retreat",
+      "startDate": "2023-09-10",
+      "endDate": "2023-09-20",
+      "suitableForYoungFamilies": false,
+      "suitableForOlderChildren": true
+    },
+    {
+        "id": 3,
+        "destination": "Turkey",
+        "startDate": "2023-08-10",
+        "endDate": "2023-08-17",
+        "suitableForYoungFamilies": true,
+        "suitableForOlderChildren": true
+      },
+      {
+        "id": 4,
+        "destination": "Spain",
+        "startDate": "2023-08-10",
+        "endDate": "2025-09-20",
+        "suitableForYoungFamilies": true,
+        "suitableForOlderChildren": true
+      }
+    
+  ]
+  
