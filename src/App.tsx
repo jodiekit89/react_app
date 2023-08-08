@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import './App.css';
-import TravelDetails from './Assets/Components/TravelDetails.tsx'
+import TravelDetails from './Assets/Components/TravelDetails.tsx';
+import travelData from './Assets/Components/travelData.json';
+
+interface Destination {
+  id: number;
+  destination: string;
+  startDate: string;
+  endDate: string;
+  suitableForYoungFamilies: boolean;
+  suitableForOlderChildren: boolean;
+}
 
 function App() {
   const [destination, setDestination] = useState<string>('');
@@ -12,6 +22,14 @@ function App() {
     e.preventDefault();
     setShowDetails(true);
   };
+
+  const filteredDestinations: Destination[] = travelData.filter(
+    (dest) =>
+      dest.destination.toLowerCase().includes(destination.toLowerCase()) &&
+      dest.startDate >= startDate &&
+      dest.endDate <= endDate &&
+      (dest.suitableForYoungFamilies || dest.suitableForOlderChildren)
+  );
 
   return (
     <div className="App">
@@ -50,11 +68,20 @@ function App() {
         <button type="submit">Plan Travel Break</button>
       </form>
       {showDetails && (
-        <TravelDetails
-          destination={destination}
-          startDate={startDate}
-          endDate={endDate}
-        />
+        <div>
+        {filteredDestinations.length > 0 ? (
+          filteredDestinations.map((dest) => (
+            <TravelDetails
+              key={dest.id}
+              destination={dest.destination}
+              startDate={dest.startDate}
+              endDate={dest.endDate}
+            />
+          ))
+        ) : (
+          <p>No suitable destinations found.</p>
+        )}
+      </div>
       )}
     </div>
   );
