@@ -29,7 +29,7 @@ function App() {
     (dest) =>
       dest.destination.toLowerCase().includes(destination.toLowerCase()) &&
       dest.startDate >= startDate &&
-      dest.endDate <= endDate &&
+      dest.endDate < endDate &&
       (suitableForYoungChildren ? dest.suitableForYoungFamilies : true) &&
       (suitableForOlderChildren ? dest.suitableForOlderChildren : true)
   );
