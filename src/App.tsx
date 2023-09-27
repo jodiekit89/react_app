@@ -19,20 +19,33 @@ function App() {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [suitableForYoungChildren, setSuitableForYoungChildren] = useState(false);
   const [suitableForOlderChildren, setSuitableForOlderChildren] = useState(false);
+  const [matchingDestinations, setMatchingDestinations] = useState<Destination[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setShowDetails(true);
   };
 
-  const filteredDestinations: Destination[] = travelData.filter(
+  const handleDestinationChange = (newDestination: string) => {
+    setDestination(newDestination);
+    const filteredDestinations: Destination[] = travelData.filter(
+      (dest) =>
+        dest.destination.toLowerCase().includes(destination.toLowerCase()) &&
+        dest.startDate >= startDate &&
+        dest.endDate < endDate &&
+        (suitableForYoungChildren ? dest.suitableForYoungFamilies : true) &&
+        (suitableForOlderChildren ? dest.suitableForOlderChildren : true)
+    );
+  }
+
+  /*const filteredDestinations: Destination[] = travelData.filter(
     (dest) =>
       dest.destination.toLowerCase().includes(destination.toLowerCase()) &&
       dest.startDate >= startDate &&
       dest.endDate < endDate &&
       (suitableForYoungChildren ? dest.suitableForYoungFamilies : true) &&
       (suitableForOlderChildren ? dest.suitableForOlderChildren : true)
-  );
+  );*/
 
   return (
     <div className="App">
@@ -44,7 +57,7 @@ function App() {
             type="text"
             id="destination"
             value={destination}
-            onChange={(e) => setDestination(e.target.value)}
+            onChange={(e) => handleDestinationChange.target.value}
             required
           />
         </div>
